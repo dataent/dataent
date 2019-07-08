@@ -1,0 +1,11 @@
+{%- if metatags -%}
+{%- for name in metatags %}
+<meta {% if name == 'og:title' or name == "og:image" or name == "og:type" or name == "og:description" %} property="{{ name }}" {% else %} name="{{ name }}" {% endif %}  content="{{ metatags[name]|striptags|escape }}">
+{%- endfor -%}
+<meta property="og:url" content="{{ dataent.utils.get_url(path) }}">
+<meta itemprop="datePublished" content="{{ dataent.format_date(published_on) }}">
+<meta itemprop="author" content="{{ blogger }}">
+<meta itemprop="name" content="{{ name }}">
+<meta itemprop="description" content="{{ description }}">
+<meta itemprop="image" content="{{ dataent.utils.get_url(metatags["image"]) }}">
+{%- endif -%}

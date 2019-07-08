@@ -1,0 +1,47 @@
+language: python
+dist: trusty
+
+python:
+  - "2.7"
+  - "3.6"
+
+services:
+  - mysql
+
+install:
+  - sudo rm /etc/apt/sources.list.d/mongodb*.list
+  - sudo rm /etc/apt/sources.list.d/docker.list
+  - sudo apt-get install hhvm && rm -rf /home/travis/.kiex/
+  - sudo apt-get purge -y mysql-common mysql-server mysql-client
+  - nvm install 10
+
+  - pip install python-coveralls
+
+  - wget https://raw.githubusercontent.com/dataent/bench/master/playbooks/install.py
+
+  - sudo python install.py --develop --user travis --without-bench-setup
+  - sudo pip install -e ~/bench
+
+  - rm $TRAVIS_BUILD_DIR/.git/shallow
+  - cd ~/ && bench init dataent-bench --python $(which python) --dataent-path $TRAVIS_BUILD_DIR
+  - cp -r $TRAVIS_BUILD_DIR/test_sites/test_site ~/dataent-bench/sites/
+
+before_script:
+  - mysql -u root -ptravis -e 'create database test_dataent'
+  - echo "USE mysql;\nCREATE USER 'test_dataent'@'localhost' IDENTIFIED BY 'test_dataent';\nFLUSH PRIVILEGES;\n" | mysql -u root -ptravis
+  - echo "USE mysql;\nGRANT ALL PRIVILEGES ON \`test_dataent\`.* TO 'test_dataent'@'localhost';\n" | mysql -u root -ptravis
+
+
+  - cd ~/dataent-bench
+  - bench use test_site
+  - bench reinstall --yes
+  - bench scheduler disable
+  - sed -i 's/9000/9001/g' sites/common_site_config.json
+  - bench start &
+  - sleep 10
+
+script:
+  - bench run-tests --coverage
+
+after_script:
+  - coveralls -b apps/dataent -d ../../sites/.coverage

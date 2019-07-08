@@ -1,0 +1,9 @@
+dataent/public/js/lib/*
+dataent/public/js/dataent/misc/tests/*
+dataent/public/js/dataent/views/test_runner.js
+dataent/core/doctype/doctype/boilerplate/*
+dataent/core/doctype/report/boilerplate/*
+dataent/public/js/dataent/class.js
+dataent/templates/includes/*
+dataent/tests/testcafe/*
+dataent/www/website_script.js

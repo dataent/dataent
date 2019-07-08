@@ -1,0 +1,202 @@
+# Copyright (c) 2015, Dataent Technologies Pvt. Ltd. and Contributors
+# MIT License. See license.txt
+
+from __future__ import unicode_literals
+import dataent
+import json
+from dataent import _
+import dataent.desk.query_report
+from dataent.utils import cint
+from dataent.model.document import Document
+from dataent.modules.export_file import export_to_files
+from dataent.modules import make_boilerplate
+from dataent.core.doctype.page.page import delete_custom_role
+from dataent.core.doctype.custom_role.custom_role import get_custom_allowed_roles
+from six import iteritems
+
+
+class Report(Document):
+	def validate(self):
+		"""only administrator can save standard report"""
+		if not self.module:
+			self.module = dataent.db.get_value("DocType", self.ref_doctype, "module")
+
+		if not self.is_standard:
+			self.is_standard = "No"
+			if dataent.session.user=="Administrator" and getattr(dataent.local.conf, 'developer_mode',0)==1:
+				self.is_standard = "Yes"
+
+		if self.is_standard == "No" and dataent.db.get_value("Report", self.name, "is_standard") == "Yes":
+			dataent.throw(_("Cannot edit a standard report. Please duplicate and create a new report"))
+
+		if self.is_standard == "Yes" and dataent.session.user!="Administrator":
+			dataent.throw(_("Only Administrator can save a standard report. Please rename and save."))
+
+		if self.report_type in ("Query Report", "Script Report") \
+			and dataent.session.user!="Administrator":
+			dataent.throw(_("Only Administrator allowed to create Query / Script Reports"))
+
+		if self.report_type == "Report Builder":
+			self.update_report_json()
+
+	def before_insert(self):
+		self.set_doctype_roles()
+
+	def on_update(self):
+		self.export_doc()
+
+	def on_trash(self):
+		delete_custom_role('report', self.name)
+
+	def set_doctype_roles(self):
+		if not self.get('roles') and self.is_standard == 'No':
+			meta = dataent.get_meta(self.ref_doctype)
+			roles = [{'role': d.role} for d in meta.permissions if d.permlevel==0]
+			self.set('roles', roles)
+
+	def is_permitted(self):
+		"""Returns true if Has Role is not set or the user is allowed."""
+		from dataent.utils import has_common
+
+		allowed = [d.role for d in dataent.get_all("Has Role", fields=["role"],
+			filters={"parent": self.name})]
+
+		custom_roles = get_custom_allowed_roles('report', self.name)
+		allowed.extend(custom_roles)
+
+		if not allowed:
+			return True
+
+		roles = dataent.get_roles()
+
+		if has_common(roles, allowed):
+			return True
+
+	def update_report_json(self):
+		if not self.json:
+			self.json = '{}'
+
+		if self.json:
+			data = json.loads(self.json)
+			data["add_total_row"] = self.add_total_row
+			self.json = json.dumps(data)
+
+	def export_doc(self):
+		if dataent.flags.in_import:
+			return
+
+		if self.is_standard == 'Yes' and (dataent.local.conf.get('developer_mode') or 0) == 1:
+			export_to_files(record_list=[['Report', self.name]],
+				record_module=self.module, create_init=True)
+
+			self.create_report_py()
+
+	def create_report_py(self):
+		if self.report_type == "Script Report":
+			make_boilerplate("controller.py", self, {"name": self.name})
+			make_boilerplate("controller.js", self, {"name": self.name})
+
+	def get_data(self, filters=None, limit=None, user=None, as_dict=False):
+		columns = []
+		out = []
+
+		if self.report_type in ('Query Report', 'Script Report', 'Custom Report'):
+			# query and script reports
+			data = dataent.desk.query_report.run(self.name, filters=filters, user=user)
+			for d in data.get('columns'):
+				if isinstance(d, dict):
+					col = dataent._dict(d)
+					if not col.fieldname:
+						col.fieldname = col.label
+					columns.append(col)
+				else:
+					fieldtype, options = "Data", None
+					parts = d.split(':')
+					if len(parts) > 1:
+						if parts[1]:
+							fieldtype, options = parts[1], None
+							if fieldtype and '/' in fieldtype:
+								fieldtype, options = fieldtype.split('/')
+
+					columns.append(dataent._dict(label=parts[0], fieldtype=fieldtype, fieldname=parts[0]))
+
+			out += data.get('result')
+		else:
+			# standard report
+			params = json.loads(self.json)
+
+			if params.get('fields'):
+				columns = params.get('fields')
+			elif params.get('columns'):
+				columns = params.get('columns')
+			else:
+				columns = [['name', self.ref_doctype]]
+				for df in dataent.get_meta(self.ref_doctype).fields:
+					if df.in_list_view:
+						columns.append([df.fieldname, self.ref_doctype])
+
+			_filters = params.get('filters') or []
+
+			if filters:
+				for key, value in iteritems(filters):
+					condition, _value = '=', value
+					if isinstance(value, (list, tuple)):
+						condition, _value = value
+					_filters.append([key, condition, _value])
+
+			def _format(parts):
+				# sort by is saved as DocType.fieldname, covert it to sql
+				return '`tab{0}`.`{1}`'.format(*parts)
+
+			if params.get('sort_by'):
+				order_by = _format(params.get('sort_by').split('.')) + ' ' + params.get('sort_order')
+			elif params.get('order_by'):
+				order_by = params.get('order_by')
+			else:
+				order_by = _format([self.ref_doctype, 'modified']) + ' desc'
+
+			if params.get('sort_by_next'):
+				order_by += ', ' + _format(params.get('sort_by_next').split('.')) + ' ' + params.get('sort_order_next')
+
+			result = dataent.get_list(self.ref_doctype,
+				fields = [_format([c[1], c[0]]) for c in columns],
+				filters=_filters,
+				order_by = order_by,
+				as_list=True,
+				limit=limit,
+				user=user)
+
+			_columns = []
+
+			for column in columns:
+				meta = dataent.get_meta(column[1])
+				field = [meta.get_field(column[0]) or dataent._dict(label=meta.get_label(column[0]), fieldname=column[0])]
+				_columns.extend(field)
+			columns = _columns
+
+			out = out + [list(d) for d in result]
+
+		if as_dict:
+			data = []
+			for row in out:
+				if isinstance(row, (list, tuple)):
+					_row = dataent._dict()
+					for i, val in enumerate(row):
+						_row[columns[i].get('fieldname')] = val
+				elif isinstance(row, dict):
+					# no need to convert from dict to dict
+					_row = dataent._dict(row)
+				data.append(_row)
+		else:
+			data = out
+		return columns, data
+
+
+	@Document.whitelist
+	def toggle_disable(self, disable):
+		self.db_set("disabled", cint(disable))
+
+@dataent.whitelist()
+def is_prepared_report_disabled(report):
+	return dataent.db.get_value('Report',
+		report, 'disable_prepared_report') or 0

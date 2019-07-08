@@ -1,0 +1,14 @@
+{
+	"app_url": "https://github.com/dataent/epaas_shopify.git",
+	"app_name": "epaas_shopify",
+	"app_icon": "octicon octicon-file-directory",
+	"app_color": "grey",
+	"app_description": "Shopify connector for EPAAS",
+	"app_publisher": "Dataent",
+	"app_email": "hello@epaas.xyz",
+	"repo_url": "https://github.com/dataent/epaas_shopify.git",
+	"app_title": "EPAAS Shopify",
+	"app_version": "1.0.0",
+	"app_category": "Integrations",
+  "featured": 1
+}

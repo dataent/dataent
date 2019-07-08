@@ -1,0 +1,1 @@
+Please read the [Pull Request Checklist](https://github.com/dataent/epaas/wiki/Pull-Request-Checklist) to ensure you have everything that is needed to get your contribution merged.
