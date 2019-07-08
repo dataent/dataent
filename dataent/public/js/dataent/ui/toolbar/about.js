@@ -1,19 +1,18 @@
 dataent.provide('dataent.ui.misc');
 dataent.ui.misc.about = function() {
 	if(!dataent.ui.misc.about_dialog) {
-		var d = new dataent.ui.Dialog({title: __('Dataent Framework')});
+		var d = new dataent.ui.Dialog({title: __('Enterprise Platform As A Service')});
 
 		$(d.body).html(repl("<div>\
-		<p>"+__("Open Source Applications for the Web")+"</p>  \
+		<p>"+__("The only platform you need to run your business")+"</p>  \
 		<p><i class='fa fa-globe fa-fw'></i>\
 			Website: <a href='https://epaas.xyz' target='_blank'>https://epaas.xyz</a></p>\
-		<p><i class='fa fa-github fa-fw'></i>\
-			Source: <a href='https://github.com/dataent' target='_blank'>https://github.com/dataent</a></p>\
+		
 		<hr>\
 		<h4>Installed Apps</h4>\
 		<div id='about-app-versions'>Loading versions...</div>\
 		<hr>\
-		<p class='text-muted'>&copy; Dataent Technologies Pvt. Ltd and contributors </p> \
+		<p class='text-muted'> Data Enterprise Inc. </p> \
 		</div>", dataent.app));
 
 		dataent.ui.misc.about_dialog = d;
