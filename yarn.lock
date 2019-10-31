@@ -812,6 +812,20 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+dataent-datatable@^1.13.4:
+  version "1.13.4"
+  resolved "https://registry.yarnpkg.com/dataent-datatable/-/dataent-datatable-1.13.4.tgz#eadebef82a4f80665a8e0e205b79cf190a2f36d7"
+  integrity sha512-U3sTP4YTVvzMhw+ovMrKnTtwvuNAYWtpl6rOeOnGPRVpRAMJHl9525VuPyZgK+jgfiWizo0s3jAkFi3SidhEgA==
+  dependencies:
+    hyperlist "^1.0.0-beta"
+    lodash "^4.17.5"
+    sortablejs "^1.7.0"
+
+dataent-gantt@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/dataent-gantt/-/dataent-gantt-0.3.0.tgz"
+  integrity sha512-rZKv0/pbgx51AP5H7lYGzW8nJNAqZA6PNPpQ2RIoQg16oXcdJ2YGvZ5ygB7UGjsWNJ3a4EE4mn4VJNR6tfoVPQ==
+
 de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
@@ -1223,20 +1237,6 @@ forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
-
-dataent-datatable@^1.13.4:
-  version "1.13.4"
-  resolved "https://registry.yarnpkg.com/dataent-datatable/-/dataent-datatable-1.13.4.tgz#eadebef82a4f80665a8e0e205b79cf190a2f36d7"
-  integrity sha512-U3sTP4YTVvzMhw+ovMrKnTtwvuNAYWtpl6rOeOnGPRVpRAMJHl9525VuPyZgK+jgfiWizo0s3jAkFi3SidhEgA==
-  dependencies:
-    hyperlist "^1.0.0-beta"
-    lodash "^4.17.5"
-    sortablejs "^1.7.0"
-
-dataent-gantt@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/dataent-gantt/-/dataent-gantt-0.3.0.tgz"
-  integrity sha512-rZKv0/pbgx51AP5H7lYGzW8nJNAqZA6PNPpQ2RIoQg16oXcdJ2YGvZ5ygB7UGjsWNJ3a4EE4mn4VJNR6tfoVPQ==
 
 fresh@0.5.2:
   version "0.5.2"
@@ -2017,15 +2017,10 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.0.0, lodash@~4.17.10:
-  version "4.17.10"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
-  integrity sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg==
-
-lodash@^4.17.5:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+lodash@^4.0.0, lodash@^4.17.5, lodash@~4.17.10:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 loud-rejection@^1.0.0:
   version "1.6.0"
