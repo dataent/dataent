@@ -812,6 +812,20 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+dataent-datatable@^1.13.4:
+  version "1.13.4"
+  resolved "https://registry.yarnpkg.com/dataent-datatable/-/dataent-datatable-1.13.4.tgz#eadebef82a4f80665a8e0e205b79cf190a2f36d7"
+  integrity sha512-U3sTP4YTVvzMhw+ovMrKnTtwvuNAYWtpl6rOeOnGPRVpRAMJHl9525VuPyZgK+jgfiWizo0s3jAkFi3SidhEgA==
+  dependencies:
+    hyperlist "^1.0.0-beta"
+    lodash "^4.17.5"
+    sortablejs "^1.7.0"
+
+dataent-gantt@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/dataent-gantt/-/dataent-gantt-0.3.0.tgz"
+  integrity sha512-rZKv0/pbgx51AP5H7lYGzW8nJNAqZA6PNPpQ2RIoQg16oXcdJ2YGvZ5ygB7UGjsWNJ3a4EE4mn4VJNR6tfoVPQ==
+
 de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
@@ -1224,20 +1238,6 @@ forwarded@~0.1.2:
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
-dataent-datatable@^1.13.4:
-  version "1.13.4"
-  resolved "https://registry.yarnpkg.com/dataent-datatable/-/dataent-datatable-1.13.4.tgz#eadebef82a4f80665a8e0e205b79cf190a2f36d7"
-  integrity sha512-U3sTP4YTVvzMhw+ovMrKnTtwvuNAYWtpl6rOeOnGPRVpRAMJHl9525VuPyZgK+jgfiWizo0s3jAkFi3SidhEgA==
-  dependencies:
-    hyperlist "^1.0.0-beta"
-    lodash "^4.17.5"
-    sortablejs "^1.7.0"
-
-dataent-gantt@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/dataent-gantt/-/dataent-gantt-0.3.0.tgz"
-  integrity sha512-rZKv0/pbgx51AP5H7lYGzW8nJNAqZA6PNPpQ2RIoQg16oXcdJ2YGvZ5ygB7UGjsWNJ3a4EE4mn4VJNR6tfoVPQ==
-
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -1505,10 +1505,10 @@ he@^1.1.0:
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
   integrity sha1-k0EP0hsAlzUVH4howvJx80J+I/0=
 
-highlight.js@^9.12.0:
-  version "9.12.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
-  integrity sha1-5tnb5Xy+/mB1HwKvM2GVhwyQwB4=
+highlight.js@^10.1.2:
+  version "10.1.2"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.1.2.tgz#c20db951ba1c22c055010648dfffd7b2a968e00c"
+  integrity sha512-Q39v/Mn5mfBlMff9r+zzA+gWxRsCRKwEMvYTiisLr/XUiFI/4puWt0Ojdko3R3JCNWGdOWaA5g/Yxqa23kC5AA==
 
 hoek@2.x.x:
   version "2.16.3"
