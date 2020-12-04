@@ -23,7 +23,7 @@
     "dataent-datatable": "^1.13.4",
     "dataent-gantt": "^0.3.0",
     "fuse.js": "^3.2.0",
-    "highlight.js": "^9.12.0",
+    "highlight.js": "^10.4.1",
     "jsbarcode": "^3.9.0",
     "moment": "^2.20.1",
     "moment-timezone": "^0.5.21",
