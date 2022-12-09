@@ -812,6 +812,20 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+dataent-datatable@^1.13.4:
+  version "1.13.4"
+  resolved "https://registry.yarnpkg.com/dataent-datatable/-/dataent-datatable-1.13.4.tgz#eadebef82a4f80665a8e0e205b79cf190a2f36d7"
+  integrity sha512-U3sTP4YTVvzMhw+ovMrKnTtwvuNAYWtpl6rOeOnGPRVpRAMJHl9525VuPyZgK+jgfiWizo0s3jAkFi3SidhEgA==
+  dependencies:
+    hyperlist "^1.0.0-beta"
+    lodash "^4.17.5"
+    sortablejs "^1.7.0"
+
+dataent-gantt@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/dataent-gantt/-/dataent-gantt-0.3.0.tgz"
+  integrity sha512-rZKv0/pbgx51AP5H7lYGzW8nJNAqZA6PNPpQ2RIoQg16oXcdJ2YGvZ5ygB7UGjsWNJ3a4EE4mn4VJNR6tfoVPQ==
+
 de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
@@ -1223,20 +1237,6 @@ forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
-
-dataent-datatable@^1.13.4:
-  version "1.13.4"
-  resolved "https://registry.yarnpkg.com/dataent-datatable/-/dataent-datatable-1.13.4.tgz#eadebef82a4f80665a8e0e205b79cf190a2f36d7"
-  integrity sha512-U3sTP4YTVvzMhw+ovMrKnTtwvuNAYWtpl6rOeOnGPRVpRAMJHl9525VuPyZgK+jgfiWizo0s3jAkFi3SidhEgA==
-  dependencies:
-    hyperlist "^1.0.0-beta"
-    lodash "^4.17.5"
-    sortablejs "^1.7.0"
-
-dataent-gantt@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/dataent-gantt/-/dataent-gantt-0.3.0.tgz"
-  integrity sha512-rZKv0/pbgx51AP5H7lYGzW8nJNAqZA6PNPpQ2RIoQg16oXcdJ2YGvZ5ygB7UGjsWNJ3a4EE4mn4VJNR6tfoVPQ==
 
 fresh@0.5.2:
   version "0.5.2"
@@ -2987,20 +2987,20 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qs@6.5.1, qs@^6.5.1:
+qs@6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
   integrity sha512-eRzhrN1WSINYCDCbrz796z37LOe3m5tmW7RQf6oBntukAG1nmovJvhnwHHRMAfeoItc1m2Hk02WER2aQ/iqs+A==
 
-qs@~6.3.0:
-  version "6.3.2"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.2.tgz#e75bd5f6e268122a2a0e0bda630b2550c166502c"
-  integrity sha1-51vV9uJoEioqDgvaYwslUMFmUCw=
-
-qs@~6.5.1:
+qs@^6.5.1, qs@~6.5.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
+
+qs@~6.3.0:
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.3.tgz#645c23bd6def4d552f258f0aadfeea6fd57f5a86"
+  integrity sha512-f8CQ/sKJBr9vfNJBdGiPzTSPUufuWyvOFkCYJKN9voqPWuBuhdlSZM78dOHKigtZ0BwuktYGrRFW2DXXc/f2Fg==
 
 query-string@^4.1.0:
   version "4.3.4"
